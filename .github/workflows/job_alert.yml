@@ -22,13 +22,15 @@ jobs:
           python-version: "3.11"
 
       - name: Install dependencies
-        run: pip install feedparser requests
+        run: pip install requests
 
       - name: Run job alert
         env:
           EMAIL_REMITENTE:  ${{ secrets.EMAIL_REMITENTE }}
           EMAIL_CONTRASENA: ${{ secrets.EMAIL_CONTRASENA }}
           EMAIL_DESTINO:    ${{ secrets.EMAIL_DESTINO }}
+          ADZUNA_APP_ID:    ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY:   ${{ secrets.ADZUNA_APP_KEY }}
         run: python job_alert_louisville.py
 
       - name: Guardar historial de empleos vistos

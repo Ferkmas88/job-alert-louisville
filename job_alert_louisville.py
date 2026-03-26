@@ -94,15 +94,15 @@ def enviar_email(nuevos):
     """.format(count=len(nuevos))
 
     for job in nuevos[:25]:
-        salario = f"💰 ${job['salario']:,.0f}/yr" if job.get("salario") else ""
+        sal_txt = f"💰 ${job['salario']:,.0f}/yr" if job.get("salario") else ""
         cuerpo_html += """
         <div style="border:1px solid #e5e7eb;border-radius:8px;padding:16px;margin:12px 0">
             <h3 style="margin:0 0 4px;color:#111827">{titulo}</h3>
-            <p style="margin:0 0 4px;color:#6b7280;font-size:14px">🏢 {empresa} {salario}</p>
+            <p style="margin:0 0 4px;color:#6b7280;font-size:14px">🏢 {empresa} {sal}</p>
             <a href="{link}" style="background:#2563eb;color:white;padding:8px 16px;
                border-radius:4px;text-decoration:none;font-size:14px">Ver empleo →</a>
         </div>
-        """.format(**job, salario=salario)
+        """.format(titulo=job["titulo"], empresa=job["empresa"], link=job["link"], sal=sal_txt)
 
     cuerpo_html += """
     <p style="color:#9ca3af;font-size:12px;margin-top:24px">
